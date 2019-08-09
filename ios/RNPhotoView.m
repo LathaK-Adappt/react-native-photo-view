@@ -295,20 +295,14 @@
         }
         _source = source;
         NSURL *imageURL = [NSURL URLWithString:uri]; //-- file:///
-        NSLog(@"Image URL in Native: %@",uri);
-        NSString *stringuri = [uri 
-   stringByReplacingOccurrencesOfString:@"data:image/gif;base64," withString:@""];
-        
+        NSString *stringuri = [uri stringByReplacingOccurrencesOfString:@"data:image/gif;base64," withString:@""];
         stringuri = [stringuri stringByReplacingOccurrencesOfString:@"data:image/jpg;base64," withString:@""];
         stringuri = [stringuri stringByReplacingOccurrencesOfString:@"data:image/png;base64," withString:@""];
-
-        NSLog(@"Image URL ab Native: %@",stringuri);
         //UIImage *image = RCTImageFromLocalAssetURL(imageURL);
 
         NSData *dataEncoded = [[NSData alloc] initWithBase64EncodedString:stringuri  options:0];
         UIImage *image = [UIImage imageWithData:dataEncoded];
         //UIImage *image = [UIImage imageWithData:imageData];
-
 
         if (image) { // if local image
             [self setImage:image];
